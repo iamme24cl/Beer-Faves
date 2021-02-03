@@ -1,0 +1,7 @@
+<% if @beer %>
+	<h1>Add Review for <%= @beer.name  %></h1>
+<% else %>
+	<h1>Add Review</h1>
+<% end %>
+
+<%= render 'form' %>

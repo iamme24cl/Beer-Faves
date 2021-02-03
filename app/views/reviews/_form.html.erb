@@ -1,0 +1,33 @@
+<%= render partial: 'layouts/errors', locals: {object: @review} %>
+
+<!-- to post as a nested route instead of using hidden field for beer use form_for([@beer, @review]) -->
+<%= form_for @review do |f| %>
+
+	<div class="form-group">
+		<%= f.label :title %>
+		<%= f.text_field :title, class: "form-control" %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :stars, "On a Scale of 1-5" %><br>
+		<%= f.number_field :stars, min: 0, max: 5 %>		
+	</div>
+
+	<div class="form-group">
+		<%= f.label :content %><br>
+		<%= f.text_area :content, class: "form-control" %>		
+	</div>
+
+	<% if @beer %>
+		<%= f.hidden_field :beer_id %>
+	<% else %>
+	<div class="form-group">
+		<%= f.label :beer_id, "Select a Beer" %><br>
+		<%= f.collection_select :beer_id, Beer.all.alpha, :id, :name_and_brewery, {:prompt => 'Select'}  %>
+	</div>
+	<% end %>
+
+	<%= f.submit class: "btn btn-primary" %>
+
+<% end %>
+

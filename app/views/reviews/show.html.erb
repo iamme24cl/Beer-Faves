@@ -1,0 +1,14 @@
+<h1>Review for <%= @review.beer.name %></h1>
+
+<ul>
+		<li><b>Title: </b><%= @review.title %> - <b><%= @review.stars %> Stars</b></li>
+		<small><b>By: </b><%= @review.user.username %></small>
+		<p><b>Content: </b><%= @review.content %>
+		<% if @review.user == current_user %>			
+			<%= link_to "Edit Review", edit_review_path(@review) %>	
+		<% end %>	
+		</p>
+</ul>
+<br>
+
+<%= link_to "Back", :back, class: "btn btn-primary" %>

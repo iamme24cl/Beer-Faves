@@ -1,0 +1,9 @@
+<h1>All Breweries</h1>
+
+<ol>
+	<% @breweries.each do |brewerie| %>
+		<li><%= link_to brewerie.name, brewery_path(brewerie) %></li><br>
+	<% end %>
+</ol><br><br>
+
+<%= link_to "Add New Brewery", new_brewery_path, class: "btn btn-primary" %>
