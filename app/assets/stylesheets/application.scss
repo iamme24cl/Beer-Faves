@@ -85,6 +85,19 @@
     margin-top: 20px;
     padding-top: 20px;
   }
+
+  div.field_with_errors input {
+    border: 1px solid red;
+  }
+
+  #error_explanation, .error {
+    color: red;
+  }
+ 
+  .message {
+    color: green;
+  }
+
 }
 
 @media screen and (max-width: 600px) {
@@ -116,4 +129,6 @@
     font-size: 18px;
     line-height: 24px;
   }
+
+
 }
