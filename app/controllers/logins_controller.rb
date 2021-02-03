@@ -20,6 +20,7 @@ class LoginsController < ApplicationController
 	def destroy
 		session.delete :user_id
 
+		flash[:message] = "Successfully Logged Out!"
 		redirect_to root_path
 	end
 

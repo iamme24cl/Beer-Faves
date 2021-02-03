@@ -8,7 +8,7 @@ User
 
 Brewery
 	name
-	in_strore: boolean
+	in_store: boolean
 	has_many beers
 
 Beers

@@ -1,0 +1,11 @@
+<h1>new beer</h1>
+
+<%= @beer.name %><br>
+<%= @beer.style %><br>
+<%= @beer.tasting_notes %><br>
+
+<% if @beer.brewery.in_store %>
+	Available in Stores
+<% else %>
+	Not Available in Stores
+<% end %>
