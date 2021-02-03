@@ -1,16 +1,28 @@
 class ReviewsController < ApplicationController
 
 	def index
+		if @beer = Beer.find_by(id: params[:beer_id])
+			@reviews = @beer.reviews
+		else
+			@reviews = Review.all
+		end
+	end
+
+	def show
+		@review = Review.find_by(id: params[:id])
 	end
 
 	def new
-		@beer = Beer.find_by(id: params[:beer_id])
-		@review = @beer.reviews.build
+		if @beer = Beer.find_by(id: params[:beer_id])
+			@review = @beer.reviews.build
+		else
+			@review = Review.new
+		end
 	end
 
 	def create
 		# raise params.inspect
-		@review = Review.new(review_params)
+		@review = current_user.reviews.build(review_params)
 		if @review.save
 			redirect_to beer_path(@review.beer)
 		else
