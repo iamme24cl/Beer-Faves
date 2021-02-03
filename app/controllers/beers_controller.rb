@@ -1,7 +1,7 @@
 class BeersController < ApplicationController
 
 	def index
-		@beers = Beer.all
+		@beers = Beer.order_by_rating
 	end
 
 	def show

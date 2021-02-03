@@ -11,6 +11,11 @@ class Beer < ApplicationRecord
   
   validate :not_a_duplicate
 
+  scope :order_by_rating, -> {left_joins(:reviews).group(:id).order('avg(stars) desc')}
+
+  def self.alpha
+    order(name: :asc)
+  end
 
   def brewery_attributes=(attributes)
   	brewery = Brewery.find_or_create_by(attributes) if !attributes['name'].blank?
@@ -21,4 +26,18 @@ class Beer < ApplicationRecord
   		errors.add(:style, "- This style of beer by #{self.brewery.name} has already been added.")
   	end
   end
+
+  def name_and_brewery
+    "#{name} - #{brewery.name}"
+  end
+
+  def avg_rating
+    stars = []
+    self.reviews.each do |review|
+      stars << review.stars
+    end
+    avg_stars = stars.sum(0.0) / stars.size
+  end
+
+ 
 end

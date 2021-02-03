@@ -8,11 +8,7 @@
 	<li><b>Tasting Notes: </b><%= @beer.tasting_notes %></li><br>
 </ul>
 
-<% if @beer.brewery.in_store %>
-	<p><b>-- Now Available in Stores</b></p>
-<% else %>
-	<p><b>Not Available in Stores</b></p>
-<% end %>
+<%= display_availability(@beer.brewery) %>
 
 <h3><%= @beer.user.username %> says</h3>
 <ul>
