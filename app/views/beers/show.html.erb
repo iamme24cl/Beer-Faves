@@ -1,11 +1,22 @@
-<h1>new beer</h1>
+<h1><%= @beer.name %></h1>
 
-<%= @beer.name %><br>
-<%= @beer.style %><br>
-<%= @beer.tasting_notes %><br>
+<ul>
+	<li><b>Style: </b><%= @beer.style %></li><br>
+	<li><b>Tasting Notes: </b><%= @beer.tasting_notes %></li><br>
+</ul>
 
 <% if @beer.brewery.in_store %>
-	Available in Stores
+	<p><b>-- Available in Stores</b></p>
 <% else %>
-	Not Available in Stores
+	<p><b>Not Available in Stores</b></p>
 <% end %>
+
+<h3>Reviews</h3>
+<ul>
+	<% @beer.reviews.each do |review| %>
+		<li><b>Titile: </b><%= review.title %> - <b><%= review.stars %> Stars</b></li>
+		<small><b>By: </b><%= review.user.username %></small>
+		<p><b>Content: </b><%= review.content %></p>
+		<%= link_to "Edit Review", edit_review_path(review) %>
+	<% end %>
+</ul>

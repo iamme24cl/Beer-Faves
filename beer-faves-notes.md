@@ -28,4 +28,3 @@ Reviews
 	content
 
 
-s

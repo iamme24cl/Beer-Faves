@@ -1,7 +1,7 @@
 class BreweriesController < ApplicationController
 
 	def index
-		@brewery = Brewery.all
+		@breweries = Brewery.all
 	end
 
 	def new
@@ -9,12 +9,17 @@ class BreweriesController < ApplicationController
 	end
 
 	def create
+		# raise params.inspect
 		@brewery = Brewery.new(brewery_params)
 		if @brewery.save
 			redirect_to brewery_path(@brewery)
 		else
 			render :new
 		end
+	end
+
+	def show
+		@brewery = Brewery.find_by(id: params[:id])
 	end
 
 	def edit
