@@ -10,13 +10,14 @@
           <li><%= link_to "Home", reviews_path %></li>
 
       <% if current_user %>          
-          <li><%= link_to "My Profile", user_path(current_user) %></li>
+          <li><%= link_to "Add a Review", new_review_path %></li>
           <li><%= link_to "Breweries", breweries_path %></li>
           <li><%= link_to "Beers", beers_path %></li>
           <li><%= link_to "Add New Beer", new_beer_path %></li>
         </ul>
 
          <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to "My Profile", user_path(current_user) %></li>
           <li><%= link_to "Logout", logout_path, method: :delete %></span> </li>
         </ul>
         

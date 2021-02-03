@@ -1,4 +1,7 @@
 <h1><%= @beer.name %></h1>
+<small><b>By </b><%= @beer.brewery.name %></small>
+<br>
+<br>
 
 <ul>
 	<li><b>Style: </b><%= @beer.style %></li><br>
@@ -6,12 +9,12 @@
 </ul>
 
 <% if @beer.brewery.in_store %>
-	<p><b>-- Available in Stores</b></p>
+	<p><b>-- Now Available in Stores</b></p>
 <% else %>
 	<p><b>Not Available in Stores</b></p>
 <% end %>
 
-<h3>My Reviews</h3>
+<h3><%= @beer.user.username %> says</h3>
 <ul>
 	<% @beer.reviews.each do |review| %>
 		<% if review.user == current_user %>
@@ -25,8 +28,8 @@
 
 <p><%= link_to "See all Reviews for this Beer", beer_reviews_path(@beer), class: "btn btn-primary" %></p>
 
-<h3>Add a Review</h3>
 
-<%= render 'reviews/form' %>
+<br>
+<%= link_to "Back", :back, class: "btn btn-primary" %>
 
 
