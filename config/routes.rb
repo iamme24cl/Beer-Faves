@@ -7,10 +7,8 @@ Rails.application.routes.draw do
 	post '/login' => 'logins#create'
 	delete '/logout' => 'logins#destroy'
 
-  get '/auth/google_oauth2/callback' => 'logins#create'
-  get '/auth/facebook/callback' => 'logins#create'
-  get '/auth/github/callback' => 'logins#create'
-
+  get '/auth/:provider/callback' => 'logins#omniauth'
+ 
   resources :reviews
   resources :beers do
   	resources :reviews, only: [:new, :index]
