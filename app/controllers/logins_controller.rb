@@ -7,13 +7,23 @@ class LoginsController < ApplicationController
 
 	def create
 		# raise params.inspect
-		@user  = User.find_by(email: params[:email])
-		if @user && @user.authenticate(params[:password])
-			session[:user_id] = @user.id 
+		if auth
+			@user = User.find_or_create_by(email: auth['info']['email']) do |u|
+				u.username = auth['info']['name']
+				u.password = SecureRandom.hex
+			end
+			# raise auth.inspect
+			session[:user_id] = @user.id
 			redirect_to user_path(@user)
 		else
-			flash[:error] = "Invalid Credentials. Try Again."
-			render :new
+			@user  = User.find_by(email: params[:email])
+			if @user && @user.authenticate(params[:password])
+				session[:user_id] = @user.id 
+				redirect_to user_path(@user)
+			else
+				flash[:error] = "Invalid Credentials. Try Again."
+				render :new
+			end
 		end
 	end
 
@@ -22,6 +32,12 @@ class LoginsController < ApplicationController
 
 		flash[:message] = "Successfully Logged Out!"
 		redirect_to root_path
+	end
+
+	private
+
+	def auth
+		request.env['omniauth.auth']
 	end
 
 end

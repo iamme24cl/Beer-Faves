@@ -6,10 +6,12 @@
         <a class="navbar-brand" href="/">BeerFaves</a>
       </div>
 
-        <ul class="nav navbar-nav">
-          <li><%= link_to "Home", reviews_path %></li>
+        
+          
 
-      <% if current_user %>          
+      <% if current_user %> 
+        <ul class="nav navbar-nav">
+          <li><%= link_to "Reviews", reviews_path %></li>         
           <li><%= link_to "Add a Review", new_review_path %></li>
           <li><%= link_to "Breweries", breweries_path %></li>
           <li><%= link_to "Beers", beers_path %></li>

@@ -1,9 +1,15 @@
 <h1>User</h1>
 
-<%= @user.username %>
-<%= @user.email %>
+<p><%= @user.username %></p>
+<p><%= @user.email %></p>
 
-<br>
-<br>
-<%= link_to "Back", :back, class: "btn btn-primary" %>
+<ul>
+	<% @user.reviews.each do |review| %>
+		<li>Title: <%= review.title %> - <%= review.stars %> Stars</li>
+		<li>Content: <%= review.content %></li>
+		<li><%= link_to "Edit Review", edit_review_path(review) %></li><br>
+	<% end %>
+</ul>
+
+
 

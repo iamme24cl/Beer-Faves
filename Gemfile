@@ -11,7 +11,7 @@ gem 'sqlite3', '~> 1.4'
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
-
+# import bootstrap to use with assetpipeline
 gem 'bootstrap-sass', '~> 3.4.1'
 
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
@@ -24,6 +24,15 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+
+# Omniauth Gems
+gem 'omniauth', '~> 1'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
+gem 'omniauth-github'
+
+# to use .env file
+gem 'dotenv-rails'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
